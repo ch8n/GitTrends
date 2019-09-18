@@ -6,7 +6,6 @@ import dev.ch8n.gittrends.data.local.db.sources.entities.CachedTrendingItem
 import dev.ch8n.gittrends.data.model.local.list.TrendingItem
 import dev.ch8n.gittrends.utils.Result
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
