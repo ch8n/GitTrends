@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.Module
 import dagger.Provides
+import dev.ch8n.gittrends.data.local.db.TrendingItemDB
+import dev.ch8n.gittrends.data.local.db.repos.CacheTrendingRepo
+import dev.ch8n.gittrends.data.local.db.repos.CacheTrendingRepoistory
 import dev.ch8n.gittrends.data.remote.repos.GithubRepo
 import dev.ch8n.gittrends.data.remote.repos.GithubRepository
 import dev.ch8n.gittrends.data.remote.sources.GithubSource
@@ -19,6 +22,10 @@ class MainDI {
     fun provideGithubRepo(githubSource: GithubSource): GithubRepo = GithubRepository(githubSource)
 
     @Provides
+    fun provideCachingRepo(trendingItemDB: TrendingItemDB): CacheTrendingRepo =
+        CacheTrendingRepoistory(trendingItemDB.trendingItemDao())
+
+    @Provides
     fun provideMainViewModel(
         mainActivity: MainActivity,
         factory: MainViewModelFactory
@@ -28,9 +35,12 @@ class MainDI {
 }
 
 @Suppress("UNCHECKED_CAST")
-class MainViewModelFactory @Inject constructor(private val githubRepo: GithubRepo) :
+class MainViewModelFactory @Inject constructor(
+    private val githubRepo: GithubRepo,
+    private val cacheRepoistory: CacheTrendingRepo
+) :
     ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(githubRepo) as T
+        return MainViewModel(githubRepo,cacheRepoistory) as T
     }
 }

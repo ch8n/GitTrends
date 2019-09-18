@@ -1,6 +1,7 @@
 package dev.ch8n.gittrends.data.model.local.list
 
 import android.os.Parcelable
+import androidx.room.Entity
 import kotlinx.android.parcel.Parcelize
 
 

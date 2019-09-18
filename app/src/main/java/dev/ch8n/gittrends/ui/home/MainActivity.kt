@@ -1,7 +1,6 @@
 package dev.ch8n.gittrends.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import dev.ch8n.gittrends.R
 import dev.ch8n.gittrends.data.model.local.list.TrendingItem
@@ -13,6 +12,7 @@ import dev.ch8n.gittrends.ui.gitPreview.PreviewActivity
 import dev.ch8n.gittrends.ui.home.dialogs.GitProfileBottomSheet
 import dev.ch8n.gittrends.utils.Result
 import dev.ch8n.gittrends.utils.launchActivity
+import dev.ch8n.gittrends.utils.logError
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -45,13 +45,12 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
         getTrendRepoEvent()
 
         swipe_refresh.setOnRefreshListener {
-            swipe_refresh.isRefreshing = true
             getTrendRepoEvent()
-
         }
     }
 
     private fun getTrendRepoEvent() {
+        swipe_refresh.isRefreshing = true
         viewModel.getTrendingProjects("java")
             .observe(this, Observer { result ->
                 swipe_refresh.isRefreshing = false
@@ -72,7 +71,7 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
     }
 
     private fun onError(error: Result.Error<Exception>) {
-        Log.e("response", error.error.localizedMessage)
+        error.error.localizedMessage.logError()
     }
 
     private fun onSuccessTrendingInfo(result: Result.Success<List<TrendingItem>>) =

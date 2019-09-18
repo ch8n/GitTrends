@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import dev.ch8n.gittrends.R
@@ -16,6 +17,7 @@ class TrendingListAdapter private constructor(diffUtil: DiffUtil.ItemCallback<Tr
     ListAdapter<TrendingItem, TrendingViewHolder>(diffUtil) {
 
     private val listEvent = MutableLiveData<AdapaterEvents>()
+
     fun onEvent(): LiveData<AdapaterEvents> = listEvent
 
     fun getItemAt(position: Int) = getItem(position)
@@ -30,19 +32,12 @@ class TrendingListAdapter private constructor(diffUtil: DiffUtil.ItemCallback<Tr
         holder.onBind(getItem(position), listEvent)
     }
 
-
     companion object {
 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TrendingItem>() {
 
             override fun areItemsTheSame(oldItem: TrendingItem, newItem: TrendingItem): Boolean =
-                oldItem.avatar == newItem.avatar &&
-                        oldItem.gitProfileName == newItem.gitProfileName &&
-                        oldItem.gitProfileUrl == newItem.gitProfileUrl &&
-                        oldItem.username == newItem.username &&
-                        oldItem.projectDesc == newItem.projectDesc &&
-                        oldItem.projectName == newItem.projectName &&
-                        oldItem.projectUrl == newItem.projectUrl
+                oldItem.gitProfileName == newItem.gitProfileName
 
             override fun areContentsTheSame(oldItem: TrendingItem, newItem: TrendingItem): Boolean =
                 oldItem.avatar == newItem.avatar &&
