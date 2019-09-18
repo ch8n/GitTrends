@@ -2,8 +2,12 @@ package dev.ch8n.gittrends.utils
 
 import dev.ch8n.gittrends.data.local.db.sources.entities.CachedTrendingItem
 import dev.ch8n.gittrends.data.model.local.list.TrendingItem
+import dev.ch8n.gittrends.data.model.remote.GitRepo
+import dev.ch8n.gittrends.data.model.remote.TrendingResponse
 
 object Utils {
+
+    val trendingItem = TrendingResponse("testAvatar","test", GitRepo("testDesc","testName","TestUrl"),"TestURL2","testUserName")
 
     fun getSampleTrendingData() = listOf(
         TrendingItem(
