@@ -11,6 +11,8 @@ import dev.ch8n.gittrends.utils.logError
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
+
+
 class MainViewModel(
     private val githubRepo: GithubRepo,
     private val cacheRepoistory: CacheTrendingRepo
