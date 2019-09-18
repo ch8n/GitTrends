@@ -15,14 +15,14 @@
 
     <FrameLayout
         android:id="@+id/progress_view"
-        android:background="@color/colorCustomBlack"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorCustomBlack">
 
         <ProgressBar
-            android:layout_gravity="center"
             android:layout_width="@dimen/image_size_med"
-            android:layout_height="@dimen/image_size_med"/>
+            android:layout_height="@dimen/image_size_med"
+            android:layout_gravity="center" />
 
     </FrameLayout>
 
@@ -35,7 +35,6 @@
         android:backgroundTint="@color/colorAccent"
         app:fabSize="mini"
         app:srcCompat="@drawable/ic_close" />
-
 
 
 </FrameLayout>

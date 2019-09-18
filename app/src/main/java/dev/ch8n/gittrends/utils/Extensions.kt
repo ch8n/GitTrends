@@ -3,6 +3,7 @@ package dev.ch8n.gittrends.utils
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,8 @@ fun AppCompatImageView.loadImage(src: String) = Picasso.get()
 fun String.toToast(context: Context) = Toast
     .makeText(context, this, Toast.LENGTH_SHORT)
     .show()
+
+fun String.logError() = Log.e("GitTrendsApp", this)
 
 fun View.setVisibility(isVisibe: Boolean) = if (isVisibe) {
     this.setVisibility(View.VISIBLE)

@@ -78,5 +78,4 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
 
     override fun onClickPreviewProfile(url: String) = onClickPreviewProject(url)
 
-
 }
