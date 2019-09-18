@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">@color/colorCustomBlack</color>
     <color name="colorAccent">#D81B60</color>
 
 
@@ -19,7 +19,7 @@
     <color name="colorTextThird">@color/colorCustomBlue</color>
 
     <!--background-->
-    <color name="colorBackgroundMain">@color/colorCustomWhite</color>
+    <color name="colorBackgroundMain">@color/colorCustomBlackSecondary</color>
     <color name="colorBackgroundError">@color/colorCustomRed</color>
     <color name="colorBackgroundButton">@color/colorCustomBlack</color>
 </resources>

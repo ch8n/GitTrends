@@ -16,6 +16,7 @@
     <dimen name="mod_10">80dp</dimen>
     <dimen name="mod_12">96dp</dimen>
     <dimen name="mod_14">112dp</dimen>
+    <dimen name="mod_16">128dp</dimen>
 
 
     <!--image size-->
@@ -31,12 +32,12 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!--default-->
-    <dimen name="default_card_height">260dp</dimen>
+    <dimen name="default_card_height">280dp</dimen>
     <dimen name="default_card_radius">16dp</dimen>
     <dimen name="default_elevation">8dp</dimen>
     <dimen name="default_forcast_list_size">@dimen/mod_10</dimen>
     <dimen name="default_forcast_list_peek">240dp</dimen>
-    <dimen name="default_card_title_margin">@dimen/mod_14</dimen>
+    <dimen name="default_card_title_margin">@dimen/mod_16</dimen>
 
 
 

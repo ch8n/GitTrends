@@ -1,5 +1,7 @@
 package dev.ch8n.gittrends
 
+import android.os.Looper
+import android.os.Looper.getMainLooper
 import androidx.core.view.isVisible
 import androidx.core.view.size
 import androidx.lifecycle.Lifecycle
@@ -10,9 +12,14 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.google.common.truth.Truth
+import dev.ch8n.gittrends.ui.home.MainActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Shadows.shadowOf
+import org.robolectric.annotation.LooperMode
 
 @RunWith(AndroidJUnit4::class)
 @MediumTest
@@ -39,6 +46,11 @@ class MainActivityTest {
         scenario = ActivityScenario.launch(MainActivity::class.java)
     }
 
+    @After
+    fun cleanup() {
+        shadowOf(getMainLooper()).idle()
+    }
+
     @Test
     fun `is Activity opening without crash`() {
         scenario.moveToState(Lifecycle.State.RESUMED)
@@ -59,27 +71,17 @@ class MainActivityTest {
         }
     }
 
-    // todo : make sure recycle view has some content else some message is visible
-    @Test
-    fun `does recycle view has some content`() {
-        scenario.moveToState(Lifecycle.State.RESUMED)
-        scenario.onActivity { view ->
-            Espresso.onView(ViewMatchers.withId(R.id.list_github_trending))
-                .check { recycleView, noViewFoundException ->
-                    val recView = recycleView as RecyclerView
-                    Truth.assertThat(recView.size != 0).isTrue()
-                }
-        }
-    }
-
     // 2. recycle item will be a card view
     @Test
     fun `recycle item has a card view`() {
         scenario.moveToState(Lifecycle.State.RESUMED)
         scenario.onActivity { view ->
+
             Truth.assertThat(false).isTrue()
         }
     }
+
+
 
 
 }
