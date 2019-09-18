@@ -42,8 +42,19 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
             }
         })
 
+        getTrendRepoEvent()
+
+        swipe_refresh.setOnRefreshListener {
+            swipe_refresh.isRefreshing = true
+            getTrendRepoEvent()
+
+        }
+    }
+
+    private fun getTrendRepoEvent() {
         viewModel.getTrendingProjects("java")
             .observe(this, Observer { result ->
+                swipe_refresh.isRefreshing = false
                 when (result) {
                     is Result.Success -> onSuccessTrendingInfo(result)
                     is Result.Error -> onError(result)
