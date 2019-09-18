@@ -4,7 +4,7 @@
 
     <!--material dimensions-->
     <dimen name="mod_1">8dp</dimen>
-    <dimen name="mod_2">14dp</dimen>
+    <dimen name="mod_2">16dp</dimen>
     <dimen name="mod_3">24dp</dimen>
     <dimen name="mod_4">32dp</dimen>
     <dimen name="mod_5">40dp</dimen>
@@ -32,15 +32,14 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!--default-->
-    <dimen name="default_card_height">280dp</dimen>
+    <dimen name="default_card_height">200dp</dimen>
     <dimen name="default_card_radius">16dp</dimen>
     <dimen name="default_elevation">8dp</dimen>
     <dimen name="default_forcast_list_size">@dimen/mod_10</dimen>
     <dimen name="default_forcast_list_peek">240dp</dimen>
     <dimen name="default_card_title_margin">@dimen/mod_16</dimen>
-
-
-
+    <dimen name="list_item_spacing">16dp</dimen>
+    <dimen name="list_item_spacing_half">8dp</dimen>
 
 
 </resources>

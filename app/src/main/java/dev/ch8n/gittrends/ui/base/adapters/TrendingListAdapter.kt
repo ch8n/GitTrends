@@ -2,6 +2,8 @@ package dev.ch8n.gittrends.ui.base.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import dev.ch8n.gittrends.R
@@ -13,6 +15,11 @@ class TrendingListAdapter private constructor(diffUtil: DiffUtil.ItemCallback<Tr
 
     ListAdapter<TrendingItem, TrendingViewHolder>(diffUtil) {
 
+    private val listEvent = MutableLiveData<AdapaterEvents>()
+    fun onEvent(): LiveData<AdapaterEvents> = listEvent
+
+    fun getItemAt(position: Int) = getItem(position)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingViewHolder {
         val holderView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_list_trending, parent, false)
@@ -20,8 +27,9 @@ class TrendingListAdapter private constructor(diffUtil: DiffUtil.ItemCallback<Tr
     }
 
     override fun onBindViewHolder(holder: TrendingViewHolder, position: Int) {
-        holder.onBind(getItem(position))
+        holder.onBind(getItem(position), listEvent)
     }
+
 
     companion object {
 
@@ -49,6 +57,10 @@ class TrendingListAdapter private constructor(diffUtil: DiffUtil.ItemCallback<Tr
         fun newInstance() = TrendingListAdapter(DIFF_CALLBACK)
     }
 
+}
+
+sealed class AdapaterEvents {
+    data class OnClickLearnMore(val position: Int) : AdapaterEvents()
 }
 
 
