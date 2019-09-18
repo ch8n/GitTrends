@@ -8,7 +8,7 @@ object Utils {
     fun getSampleTrendingData() = listOf(
         TrendingItem(
             "http://i.imgur.com/DvpvklR.png",
-            "DemoProfileName",
+            "pokemon1",
             "Demo profile url",
             "Demo User Name",
             "Demo project desc http://i.imgur.com/DvpvklR.png bla bla bla",
@@ -17,7 +17,7 @@ object Utils {
         ),
         TrendingItem(
             "http://i.imgur.com/DvpvklR.png",
-            "DemoProfileName",
+            "pokemon2",
             "Demo profile url",
             "Demo User Name",
             "Demo project desc http://i.imgur.com/DvpvklR.png bla bla bla",
@@ -26,7 +26,7 @@ object Utils {
         ),
         TrendingItem(
             "http://i.imgur.com/DvpvklR.png",
-            "DemoProfileName",
+            "pokemon3",
             "Demo profile url",
             "Demo User Name",
             "Demo project desc http://i.imgur.com/DvpvklR.png bla bla bla",
@@ -40,7 +40,7 @@ object Utils {
         mutableList.add(
             CachedTrendingItem(
                 "Pokemon1",
-                "Pokemon1",
+                "blablabla",
                 "Demo profile url",
                 "Demo User Name",
                 "Demo project desc http://i.imgur.com/DvpvklR.png bla bla bla",
@@ -52,7 +52,7 @@ object Utils {
         mutableList.add(
             CachedTrendingItem(
                 "Pokemon2",
-                "Pokemon2",
+                "blablabla",
                 "Demo profile url",
                 "Demo User Name",
                 "Demo project desc http://i.imgur.com/DvpvklR.png bla bla bla",
@@ -64,7 +64,7 @@ object Utils {
         mutableList.add(
             CachedTrendingItem(
                 "Pokemon3",
-                "Pokemon3",
+                "blablabla",
                 "Demo profile url",
                 "Demo User Name",
                 "Demo project desc http://i.imgur.com/DvpvklR.png bla bla bla",

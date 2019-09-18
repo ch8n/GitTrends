@@ -43,7 +43,7 @@ class CacheTrendingRepoistory @Inject constructor(
                     return@map TrendingItem(
                         cache.avatar,
                         cache.gitProfileName,
-                        cache.projectUrl,
+                        cache.gitProfileUrl,
                         cache.username,
                         cache.projectDesc,
                         cache.projectName,

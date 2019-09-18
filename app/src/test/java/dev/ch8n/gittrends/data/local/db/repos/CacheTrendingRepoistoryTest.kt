@@ -1,6 +1,5 @@
 package dev.ch8n.gittrends.data.local.db.repos
 
-import android.os.Looper
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
@@ -13,22 +12,27 @@ import dev.ch8n.gittrends.data.local.db.sources.dao.TrendingItemsDao
 import dev.ch8n.gittrends.di.modules.DataBaseBinder
 import dev.ch8n.gittrends.utils.Result
 import dev.ch8n.gittrends.utils.Utils
-import io.mockk.coVerify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.Shadows
-import java.util.concurrent.TimeUnit
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 @MediumTest
 class CacheTrendingRepoistoryTest {
+
+
+    /**
+     * todo:
+     * test repository provided dao is working
+     * 1. insert into repo tranforms the trendingtype to cacheType and store in DB
+     * 2. delete from repo deletes data from database
+     * 3. get from repos converts the data from cacheType to trendingItem type
+     */
 
     // Set the main coroutines dispatcher for unit testing.
     @ExperimentalCoroutinesApi
@@ -67,13 +71,56 @@ class CacheTrendingRepoistoryTest {
 
     @Test
     fun `insert LocalTrending Items to DB`() = runBlocking {
-
-        dao.putTrendingItems(Utils.getSampleCacheTrendingData())
-        Shadows.shadowOf(Looper.getMainLooper()).idleFor(2, TimeUnit.SECONDS)
-        val result = dao.getTrendingItems()
-        Truth.assertThat(result.size).isEqualTo(5)
-
+        repo.putTrendingItems(Utils.getSampleTrendingData())
+        Truth.assertThat(dao.getTrendingItems().size).isEqualTo(3)
     }
+
+    @Test
+    fun `check if insert is tranformed correctly`() = runBlocking {
+        val repoData = Utils.getSampleTrendingData()
+        repo.putTrendingItems(repoData)
+        val daoData = dao.getTrendingItems()
+        for (i in repoData.indices) {
+            Truth.assertThat(daoData[i].avatar).isEqualTo(repoData[i].avatar)
+            Truth.assertThat(daoData[i].gitProfileName).isEqualTo(repoData[i].gitProfileName)
+            Truth.assertThat(daoData[i].gitProfileUrl).isEqualTo(repoData[i].gitProfileUrl)
+            Truth.assertThat(daoData[i].username).isEqualTo(repoData[i].username)
+            Truth.assertThat(daoData[i].projectDesc).isEqualTo(repoData[i].projectDesc)
+            Truth.assertThat(daoData[i].projectName).isEqualTo(repoData[i].projectName)
+        }
+    }
+
+    @Test
+    fun `delete LocalTrending Items from DB`() = runBlocking {
+        repo.deleteTrendingItems()
+        Truth.assertThat(dao.getTrendingItems().size).isEqualTo(0)
+    }
+
+
+    @Test
+    fun `get LocalTrending Items to DB`() = runBlocking {
+        dao.putTrendingItems(Utils.getSampleCacheTrendingData())
+        val result = repo.getTrendingItems()
+        Truth.assertThat(dao.getTrendingItems().size).isEqualTo(3)
+    }
+
+
+    @Test
+    fun `check if getdata is transformed from cached to list item correctly`() = runBlocking {
+        val daoData = Utils.getSampleCacheTrendingData()
+        dao.putTrendingItems(daoData)
+        val repoData = (repo.getTrendingItems() as Result.Success).value
+        for (i in repoData.indices) {
+            Truth.assertThat(daoData[i].avatar).isEqualTo(repoData[i].avatar)
+            Truth.assertThat(daoData[i].gitProfileName).isEqualTo(repoData[i].gitProfileName)
+            Truth.assertThat(daoData[i].gitProfileUrl).isEqualTo(repoData[i].gitProfileUrl)
+            Truth.assertThat(daoData[i].username).isEqualTo(repoData[i].username)
+            Truth.assertThat(daoData[i].projectDesc).isEqualTo(repoData[i].projectDesc)
+            Truth.assertThat(daoData[i].projectName).isEqualTo(repoData[i].projectName)
+        }
+    }
+
+
 
 
 }
