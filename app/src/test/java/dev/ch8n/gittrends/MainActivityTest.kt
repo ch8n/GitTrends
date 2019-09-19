@@ -129,5 +129,65 @@ class MainActivityTest {
 
     }
 
+
+    @Test
+    fun `click on profile chip open preview activity`() {
+        scenario.moveToState(Lifecycle.State.RESUMED)
+        scenario.onActivity { activity ->
+
+            activity.trendingListAdapter.submitList(arrayListOf(Utils.getSampleTrendingData()[0]))
+
+            Thread.sleep(2000)
+
+            val chip = Espresso.onView(
+                Matchers.allOf(
+                    withId(R.id.chip_project_url), withText("Learn more"),
+                    childAtPosition(
+                        childAtPosition(
+                            ViewMatchers.withClassName(Matchers.`is`("android.widget.FrameLayout")),
+                            0
+                        ),
+                        2
+                    ),
+                    ViewMatchers.isDisplayed()
+                )
+            )
+            chip.perform(click())
+
+            val materialButton = Espresso.onView(
+                Matchers.allOf(
+                    withId(R.id.btn_preview_repo), withText("Preview Repository"),
+                    childAtPosition(
+                        childAtPosition(
+                            ViewMatchers.withClassName(Matchers.`is`("android.widget.FrameLayout")),
+                            0
+                        ),
+                        1
+                    ),
+                    ViewMatchers.isDisplayed()
+                )
+            )
+            materialButton.perform(click())
+
+            Thread.sleep(700)
+
+            val imageButton = Espresso.onView(
+                Matchers.allOf(
+                    withId(R.id.fab_preview_back),
+                    childAtPosition(
+                        childAtPosition(
+                            withId(android.R.id.content),
+                            0
+                        ),
+                        1
+                    ),
+                    ViewMatchers.isDisplayed()
+                )
+            )
+            imageButton.check(matches(ViewMatchers.isDisplayed()))
+        }
+
+    }
+
 }
 

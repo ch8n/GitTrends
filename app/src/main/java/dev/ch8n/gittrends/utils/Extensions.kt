@@ -30,7 +30,6 @@ fun View.setVisibility(isVisibe: Boolean) = if (isVisibe) {
     this.setVisibility(View.GONE)
 }
 
-
 fun AppCompatImageView.loadAvatar(src: String) = Picasso.get()
     .load(src)
     .resize(120, 120)
