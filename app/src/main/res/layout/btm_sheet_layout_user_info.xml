@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/colorCustomBlackSecondary"
-    app:cardUseCompatPadding="false">
+    app:cardBackgroundColor="@color/colorCustomBlackSecondary">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:orientation="vertical"

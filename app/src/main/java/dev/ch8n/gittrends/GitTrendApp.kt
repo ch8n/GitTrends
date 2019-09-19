@@ -8,7 +8,7 @@ import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
 
-class GitTrendApp : DaggerApplication() {
+open class GitTrendApp : DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> = DaggerAppComponent
         .builder()

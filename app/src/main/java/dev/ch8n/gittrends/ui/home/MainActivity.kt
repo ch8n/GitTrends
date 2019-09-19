@@ -13,9 +13,12 @@ import dev.ch8n.gittrends.ui.home.dialogs.GitProfileBottomSheet
 import dev.ch8n.gittrends.utils.Result
 import dev.ch8n.gittrends.utils.launchActivity
 import dev.ch8n.gittrends.utils.logError
+import dev.ch8n.gittrends.utils.toToast
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
+//Please find test in test not in android test
+//I have implemented AndroidX testing espresso + roboelectric Jvm test
 class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListener {
 
     override val contentView: Int
@@ -71,6 +74,7 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
     }
 
     private fun onError(error: Result.Error<Exception>) {
+        error.error.localizedMessage.toToast(this)
         error.error.localizedMessage.logError()
     }
 

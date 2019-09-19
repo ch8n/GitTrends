@@ -94,6 +94,7 @@ dependencies {
     testImplementation "androidx.test.ext:junit:1.1.1"
     testImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
     testImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
     testImplementation 'androidx.test.ext:truth:1.2.0'
     testImplementation 'com.google.truth:truth:0.42'
 
