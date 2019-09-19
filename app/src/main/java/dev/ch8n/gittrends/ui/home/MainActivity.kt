@@ -74,7 +74,7 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
     }
 
     private fun onError(error: Result.Error<Exception>) {
-        error.error.localizedMessage.toToast(this)
+        "Something went wrong!".toToast(this)
         error.error.localizedMessage.logError()
     }
 

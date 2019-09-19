@@ -6,9 +6,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -17,6 +17,8 @@ import androidx.test.filters.MediumTest
 import com.google.common.truth.Truth
 import dev.ch8n.gittrends.ui.home.MainActivity
 import dev.ch8n.gittrends.utils.Utils
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matchers
 import org.junit.After
 import org.junit.Before
@@ -25,10 +27,6 @@ import org.junit.runner.RunWith
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import java.util.concurrent.TimeUnit
-import androidx.test.espresso.matcher.RootMatchers.withDecorView
-import io.mockk.verify
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.not
 
 
 @RunWith(AndroidJUnit4::class)
