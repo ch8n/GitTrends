@@ -5,9 +5,11 @@ import androidx.room.RoomDatabase
 import dagger.Module
 import dagger.Provides
 import dev.ch8n.gittrends.GitTrendApp
-import dev.ch8n.gittrends.data.local.db.TrendingItemDB
+import dev.ch8n.gittrends.data.local.db.room.AppDB
+import dev.ch8n.gittrends.data.local.db.room.DatabaseProvider
+import dev.ch8n.gittrends.data.local.db.room.ROOM_DB_NAME
+import dev.ch8n.gittrends.data.local.db.room.RoomDB
 import dev.ch8n.gittrends.data.local.prefs.AppPrefs
-import dev.ch8n.gittrends.data.local.prefs.dao.SettingPrefs
 import dev.ch8n.gittrends.data.local.prefs.PreferenceProvider
 import javax.inject.Singleton
 
@@ -16,18 +18,23 @@ class DataBaseBinder {
 
     @Provides
     fun provideRoomClient(app: GitTrendApp) =
-        Room.databaseBuilder(app.applicationContext, TrendingItemDB::class.java, "GitTrendDB")
+        Room.databaseBuilder(app.applicationContext, RoomDB::class.java, ROOM_DB_NAME)
             .fallbackToDestructiveMigration()
 
     @Provides
     @Singleton
-    fun provideGitTrendDB(roomClient: RoomDatabase.Builder<TrendingItemDB>): TrendingItemDB =
+    fun provideGitTrendDB(roomClient: RoomDatabase.Builder<RoomDB>): RoomDB =
         roomClient.build()
-
 
     @Provides
     @Singleton
-    fun provideApplicationPrefs(app:GitTrendApp):PreferenceProvider = AppPrefs(app.applicationContext)
+    fun provideApplicationDatabase(database: RoomDB): DatabaseProvider =
+        AppDB(database)
+
+    @Provides
+    @Singleton
+    fun provideApplicationPrefs(app: GitTrendApp): PreferenceProvider =
+        AppPrefs(app.applicationContext)
 
 
 }

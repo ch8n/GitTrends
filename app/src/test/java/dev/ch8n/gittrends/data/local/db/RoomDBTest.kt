@@ -7,12 +7,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth
 import dev.ch8n.gittrends.MainCoroutineRule
-import dev.ch8n.gittrends.data.local.db.sources.entities.CachedTrendingItem
+import dev.ch8n.gittrends.data.local.db.room.RoomDB
 import dev.ch8n.gittrends.di.modules.DataBaseBinder
 import dev.ch8n.gittrends.utils.Utils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -22,7 +21,7 @@ import org.junit.runner.RunWith
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 @SmallTest
-class TrendingItemDBTest {
+class RoomDBTest {
 
     /**
      * todo:
@@ -42,7 +41,7 @@ class TrendingItemDBTest {
     var instantExecutorRule = InstantTaskExecutorRule()
 
 
-    private lateinit var database: TrendingItemDB
+    private lateinit var database: RoomDB
 
     @Before
     fun initDatabase() {
@@ -53,7 +52,7 @@ class TrendingItemDBTest {
         database = databaseBinder.provideGitTrendDB(
             Room.inMemoryDatabaseBuilder(
                 ApplicationProvider.getApplicationContext(),
-                TrendingItemDB::class.java
+                RoomDB::class.java
             ).allowMainThreadQueries()
         )
 

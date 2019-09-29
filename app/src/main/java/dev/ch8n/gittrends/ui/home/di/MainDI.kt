@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.Module
 import dagger.Provides
-import dev.ch8n.gittrends.data.local.db.TrendingItemDB
+import dev.ch8n.gittrends.data.local.db.room.RoomDB
 import dev.ch8n.gittrends.data.local.db.repos.CacheTrendingRepo
 import dev.ch8n.gittrends.data.local.db.repos.CacheTrendingRepoistory
 import dev.ch8n.gittrends.data.remote.repos.GithubRepo
@@ -22,8 +22,8 @@ class MainDI {
     fun provideGithubRepo(githubSource: GithubSource): GithubRepo = GithubRepository(githubSource)
 
     @Provides
-    fun provideCachingRepo(trendingItemDB: TrendingItemDB): CacheTrendingRepo =
-        CacheTrendingRepoistory(trendingItemDB.trendingItemDao())
+    fun provideCachingRepo(roomDB: RoomDB): CacheTrendingRepo =
+        CacheTrendingRepoistory(roomDB.trendingItemDao())
 
     @Provides
     fun provideMainViewModel(

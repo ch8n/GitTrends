@@ -7,7 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.google.common.truth.Truth
 import dev.ch8n.gittrends.MainCoroutineRule
-import dev.ch8n.gittrends.data.local.db.TrendingItemDB
+import dev.ch8n.gittrends.data.local.db.room.RoomDB
 import dev.ch8n.gittrends.data.local.db.sources.dao.TrendingItemsDao
 import dev.ch8n.gittrends.di.modules.DataBaseBinder
 import dev.ch8n.gittrends.utils.Result
@@ -43,7 +43,7 @@ class CacheTrendingRepoistoryTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: TrendingItemDB
+    private lateinit var database: RoomDB
     private lateinit var repo: CacheTrendingRepoistory
     private lateinit var dao: TrendingItemsDao
 
@@ -55,7 +55,7 @@ class CacheTrendingRepoistoryTest {
         database = datbaseBinder.provideGitTrendDB(
             Room.inMemoryDatabaseBuilder(
                 ApplicationProvider.getApplicationContext(),
-                TrendingItemDB::class.java
+                RoomDB::class.java
             ).allowMainThreadQueries()
         )
 
