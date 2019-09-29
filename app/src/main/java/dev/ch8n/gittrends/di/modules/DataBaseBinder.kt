@@ -6,14 +6,9 @@ import dagger.Module
 import dagger.Provides
 import dev.ch8n.gittrends.GitTrendApp
 import dev.ch8n.gittrends.data.local.db.TrendingItemDB
-import dev.ch8n.gittrends.data.model.local.list.TrendingItem
-import dev.ch8n.gittrends.data.remote.config.ApiManager
-import dev.ch8n.gittrends.data.remote.config.BaseUrl
-import dev.ch8n.gittrends.data.remote.config.NETWORK_TIMEOUT
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+import dev.ch8n.gittrends.data.local.prefs.AppPrefs
+import dev.ch8n.gittrends.data.local.prefs.dao.SettingPrefs
+import dev.ch8n.gittrends.data.local.prefs.PreferenceProvider
 import javax.inject.Singleton
 
 @Module
@@ -28,5 +23,11 @@ class DataBaseBinder {
     @Singleton
     fun provideGitTrendDB(roomClient: RoomDatabase.Builder<TrendingItemDB>): TrendingItemDB =
         roomClient.build()
+
+
+    @Provides
+    @Singleton
+    fun provideApplicationPrefs(app:GitTrendApp):PreferenceProvider = AppPrefs(app.applicationContext)
+
 
 }

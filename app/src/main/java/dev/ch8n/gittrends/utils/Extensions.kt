@@ -42,3 +42,4 @@ inline fun <reified T : AppCompatActivity> BaseActivity.launchActivity(bundle: B
     })
 
 }
+
