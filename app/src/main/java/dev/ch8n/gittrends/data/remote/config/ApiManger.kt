@@ -14,3 +14,5 @@ class ApiManager @Inject constructor(private val retrofit: Retrofit) {
     var githubService: GithubService = createApi(GithubService::class.java)
         private set
 }
+
+

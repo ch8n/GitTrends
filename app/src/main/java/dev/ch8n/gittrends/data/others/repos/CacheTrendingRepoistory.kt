@@ -1,8 +1,8 @@
-package dev.ch8n.gittrends.data.local.db.repos
+package dev.ch8n.gittrends.data.others.repos
 
 
-import dev.ch8n.gittrends.data.local.db.sources.dao.TrendingItemsDao
-import dev.ch8n.gittrends.data.local.db.sources.entities.CachedTrendingItem
+import dev.ch8n.gittrends.data.others.sources.dao.TrendingItemsDao
+import dev.ch8n.gittrends.data.others.sources.entities.CachedTrendingItem
 import dev.ch8n.gittrends.data.model.local.list.TrendingItem
 import dev.ch8n.gittrends.utils.Result
 import kotlinx.coroutines.Dispatchers

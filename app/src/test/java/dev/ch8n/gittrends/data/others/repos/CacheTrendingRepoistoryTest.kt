@@ -1,4 +1,4 @@
-package dev.ch8n.gittrends.data.local.db.repos
+package dev.ch8n.gittrends.data.others.repos
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
@@ -7,8 +7,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.google.common.truth.Truth
 import dev.ch8n.gittrends.MainCoroutineRule
-import dev.ch8n.gittrends.data.local.db.room.RoomDB
-import dev.ch8n.gittrends.data.local.db.sources.dao.TrendingItemsDao
+import dev.ch8n.gittrends.data.local.db.RoomDB
+import dev.ch8n.gittrends.data.others.sources.dao.TrendingItemsDao
 import dev.ch8n.gittrends.di.modules.DataBaseBinder
 import dev.ch8n.gittrends.utils.Result
 import dev.ch8n.gittrends.utils.Utils

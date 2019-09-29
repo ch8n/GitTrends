@@ -7,7 +7,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth
 import dev.ch8n.gittrends.MainCoroutineRule
-import dev.ch8n.gittrends.data.local.db.room.RoomDB
 import dev.ch8n.gittrends.di.modules.DataBaseBinder
 import dev.ch8n.gittrends.utils.Utils
 import kotlinx.coroutines.ExperimentalCoroutinesApi

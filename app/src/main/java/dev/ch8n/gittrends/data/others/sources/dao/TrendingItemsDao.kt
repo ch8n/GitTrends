@@ -1,10 +1,10 @@
-package dev.ch8n.gittrends.data.local.db.sources.dao
+package dev.ch8n.gittrends.data.others.sources.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import dev.ch8n.gittrends.data.local.db.sources.entities.CachedTrendingItem
+import dev.ch8n.gittrends.data.others.sources.entities.CachedTrendingItem
 
 @Dao
 interface TrendingItemsDao {

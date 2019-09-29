@@ -1,4 +1,4 @@
-package dev.ch8n.gittrends.data.local.db.sources.entities
+package dev.ch8n.gittrends.data.others.sources.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

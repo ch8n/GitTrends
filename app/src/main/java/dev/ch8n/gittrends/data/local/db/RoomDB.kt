@@ -1,11 +1,11 @@
-package dev.ch8n.gittrends.data.local.db.room
+package dev.ch8n.gittrends.data.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import dev.ch8n.gittrends.data.local.db.room.dao.ProfileDao
-import dev.ch8n.gittrends.data.local.db.room.dao.ProjectDao
-import dev.ch8n.gittrends.data.local.db.sources.dao.TrendingItemsDao
-import dev.ch8n.gittrends.data.local.db.sources.entities.CachedTrendingItem
+import dev.ch8n.gittrends.data.local.db.dao.ProfileDao
+import dev.ch8n.gittrends.data.local.db.dao.ProjectDao
+import dev.ch8n.gittrends.data.others.sources.dao.TrendingItemsDao
+import dev.ch8n.gittrends.data.others.sources.entities.CachedTrendingItem
 import dev.ch8n.gittrends.data.model.db.GitUser
 import dev.ch8n.gittrends.data.model.db.Project
 

@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.Module
 import dagger.Provides
-import dev.ch8n.gittrends.data.local.db.room.RoomDB
-import dev.ch8n.gittrends.data.local.db.repos.CacheTrendingRepo
-import dev.ch8n.gittrends.data.local.db.repos.CacheTrendingRepoistory
+import dev.ch8n.gittrends.data.local.db.RoomDB
+import dev.ch8n.gittrends.data.others.repos.CacheTrendingRepo
+import dev.ch8n.gittrends.data.others.repos.CacheTrendingRepoistory
 import dev.ch8n.gittrends.data.remote.repos.GithubRepo
 import dev.ch8n.gittrends.data.remote.repos.GithubRepository
 import dev.ch8n.gittrends.data.remote.sources.GithubSource

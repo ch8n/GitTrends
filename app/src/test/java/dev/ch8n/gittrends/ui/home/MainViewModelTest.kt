@@ -6,16 +6,14 @@ import androidx.test.filters.MediumTest
 import com.google.common.truth.Truth
 import com.jraska.livedata.test
 import dev.ch8n.gittrends.MainCoroutineRule
-import dev.ch8n.gittrends.data.local.db.repos.CacheTrendingRepo
+import dev.ch8n.gittrends.data.others.repos.CacheTrendingRepo
 import dev.ch8n.gittrends.data.remote.repos.GithubRepo
 import dev.ch8n.gittrends.utils.Result
 import dev.ch8n.gittrends.utils.Utils
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.coVerifySequence
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

@@ -1,4 +1,4 @@
-package dev.ch8n.gittrends.data.local.db.room.dao
+package dev.ch8n.gittrends.data.local.db.dao
 
 import androidx.room.*
 import dev.ch8n.gittrends.data.model.db.*
@@ -16,10 +16,10 @@ interface ProjectDao {
 
     //######## Select ##########
 
-    @Query("SELECT * FROM $TABLE_NAME_PROJECT")
+    @Query("SELECT * FROM Project")
     suspend fun getProjects(): List<Project>
 
-    @Query("SELECT * FROM $TABLE_NAME_PROJECT WHERE $COLOUMN_GIT_USERNAME=:gitUserName")
+    @Query("SELECT * FROM Project WHERE gitUserName=:gitUserName")
     suspend fun getProject(gitUserName: String): Project
 
     //######## Delete ##########
@@ -27,7 +27,7 @@ interface ProjectDao {
     @Delete
     suspend fun clearProjects()
 
-    @Query("SELECT * FROM $TABLE_NAME_PROJECT WHERE $COLOUMN_GIT_USERNAME=:gitUserName")
+    @Query("SELECT * FROM Project WHERE gitUserName=:gitUserName")
     suspend fun deleteProject(gitUserName: String)
 
 

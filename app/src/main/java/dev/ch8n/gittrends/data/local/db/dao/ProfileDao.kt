@@ -1,10 +1,7 @@
-package dev.ch8n.gittrends.data.local.db.room.dao
+package dev.ch8n.gittrends.data.local.db.dao
 
 import androidx.room.*
-import dev.ch8n.gittrends.data.model.db.COLOUMN_GIT_USERNAME
-import dev.ch8n.gittrends.data.model.db.COLOUMN_USERNAME
-import dev.ch8n.gittrends.data.model.db.GitUser
-import dev.ch8n.gittrends.data.model.db.TABLE_NAME_USER
+import dev.ch8n.gittrends.data.model.db.*
 
 
 @Dao
@@ -20,13 +17,13 @@ interface ProfileDao {
 
     //######## Select ##########
 
-    @Query("SELECT * FROM $TABLE_NAME_USER")
+    @Query("SELECT * FROM GitUser")
     suspend fun getProfiles(): List<GitUser>
 
-    @Query("SELECT * FROM $TABLE_NAME_USER WHERE $COLOUMN_USERNAME=:userName")
+    @Query("SELECT * FROM GitUser WHERE username=:userName")
     suspend fun getProfile(userName: String): GitUser
 
-    @Query("SELECT * FROM $TABLE_NAME_USER WHERE $COLOUMN_GIT_USERNAME=:gitProfileName")
+    @Query("SELECT * FROM GitUser WHERE gitProfileName =:gitProfileName")
     suspend fun getGitProfile(gitProfileName: String): GitUser
 
 
@@ -35,10 +32,10 @@ interface ProfileDao {
     @Delete
     suspend fun clearProfiles()
 
-    @Query("SELECT * FROM $TABLE_NAME_USER WHERE $COLOUMN_USERNAME=:userName")
+    @Query("SELECT * FROM GitUser WHERE username=:userName")
     suspend fun deleteProfile(userName: String)
 
-    @Query("SELECT * FROM $TABLE_NAME_USER WHERE $COLOUMN_GIT_USERNAME=:gitProfileName")
+    @Query("SELECT * FROM GitUser WHERE gitProfileName=:gitProfileName")
     suspend fun deleteGitProfile(gitProfileName: String)
 
 

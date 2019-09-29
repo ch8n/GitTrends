@@ -3,7 +3,7 @@ package dev.ch8n.gittrends.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dev.ch8n.gittrends.data.local.db.repos.CacheTrendingRepo
+import dev.ch8n.gittrends.data.others.repos.CacheTrendingRepo
 import dev.ch8n.gittrends.data.model.local.list.TrendingItem
 import dev.ch8n.gittrends.data.remote.repos.GithubRepo
 import dev.ch8n.gittrends.utils.Result

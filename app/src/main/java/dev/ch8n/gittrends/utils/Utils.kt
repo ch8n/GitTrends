@@ -1,6 +1,6 @@
 package dev.ch8n.gittrends.utils
 
-import dev.ch8n.gittrends.data.local.db.sources.entities.CachedTrendingItem
+import dev.ch8n.gittrends.data.others.sources.entities.CachedTrendingItem
 import dev.ch8n.gittrends.data.model.local.list.TrendingItem
 import dev.ch8n.gittrends.data.model.remote.GitRepo
 import dev.ch8n.gittrends.data.model.remote.TrendingResponse

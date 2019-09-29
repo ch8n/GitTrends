@@ -16,4 +16,4 @@ object AppAPI {
 }
 
 
-const val NETWORK_TIMEOUT = 5L
+const val NETWORK_TIMEOUT = 20L

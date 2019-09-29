@@ -1,4 +1,4 @@
-package dev.ch8n.gittrends.data.local.db.repos
+package dev.ch8n.gittrends.data.others.repos
 
 import dev.ch8n.gittrends.data.model.local.list.TrendingItem
 import dev.ch8n.gittrends.utils.Result
