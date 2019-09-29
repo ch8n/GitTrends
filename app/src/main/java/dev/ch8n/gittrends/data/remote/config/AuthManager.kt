@@ -5,3 +5,4 @@ data class AuthManager(
     val apiKey: String,
     val userId: String
 )
+// todo auth manager and api caching
