@@ -2,9 +2,12 @@ package dev.ch8n.gittrends.data.local.prefs
 
 interface PreferenceProvider {
 
-    interface Settings{
+    interface Auth{
         var isGithubLogin:Boolean
         var lastSync:Long
+        var authToken :String
+        var authEmail :String
+        var password :String
     }
 
     interface User{
@@ -13,7 +16,8 @@ interface PreferenceProvider {
         var githubEmail:String
     }
 
-    val settings : PreferenceProvider.Settings
+
+    val auth : PreferenceProvider.Auth
     val user: PreferenceProvider.User
 
 }

@@ -8,6 +8,7 @@ import dev.ch8n.gittrends.GitTrendApp
 import dev.ch8n.gittrends.data.remote.config.ApiManager
 import dev.ch8n.gittrends.data.remote.config.BaseUrl
 import dev.ch8n.gittrends.data.remote.config.NETWORK_TIMEOUT
+import dev.ch8n.gittrends.data.remote.config.SecureConnectionProvider
 import dev.ch8n.gittrends.utils.ConnectionManger
 import dev.ch8n.gittrends.utils.ConnectionProvider
 import okhttp3.OkHttpClient
