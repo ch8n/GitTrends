@@ -15,6 +15,7 @@ class ConnectionManger(
 ) : ConnectionProvider {
 
     private val connectStatus = MutableLiveData<Boolean>(false)
+    private val cachedStatus = MutableLiveData<Boolean>(false)
 
     override fun getConnectionInterceptor() = Interceptor { chain ->
         val isConnected: Boolean = getNetworkStatus()
@@ -32,14 +33,17 @@ class ConnectionManger(
             .header(CACHE_CONTROL, CACHE_TYPE_POLICY)
             .build()
         val response = chain.proceed(request)
+        cachedStatus.postValue(response.cacheResponse()==null)
         if (response.cacheResponse()==null){
             "Cache for API not available".logError("Cache Network")
         }
-
         return response
     }
 
     override var networkStatus = connectStatus as LiveData<Boolean>
+        private set
+
+    override var isCacheValid = cachedStatus as LiveData<Boolean>
         private set
 
 
@@ -53,9 +57,11 @@ interface ConnectionProvider {
     fun getConnectionInterceptor(): Interceptor
     fun getDiskCache(): Cache
     val networkStatus: LiveData<Boolean>
-    fun onCacheUnavailable()
+    val isCacheValid : LiveData<Boolean>
 }
 
-const val DISK_CACHE_SIZE: Long = 10 * 1024 * 1024
+const val DISK_CACHE_SIZE: Long = 10 * 1024 * 1024 // 10MB
+const val CACHE_VALID_TIME: Long = 60 * 60 * 24 // 24 hours
+
 const val CACHE_CONTROL = "Cache-Control"
-const val CACHE_TYPE_POLICY = "public, only-if-cached, max-stale=${60 * 60 * 24}"
+const val CACHE_TYPE_POLICY = "public, only-if-cached, max-stale=$CACHE_VALID_TIME"
