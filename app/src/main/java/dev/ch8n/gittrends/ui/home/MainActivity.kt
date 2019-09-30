@@ -10,10 +10,7 @@ import dev.ch8n.gittrends.ui.base.adapters.TrendingListAdapter
 import dev.ch8n.gittrends.ui.gitPreview.PREVIEW_URL
 import dev.ch8n.gittrends.ui.gitPreview.PreviewActivity
 import dev.ch8n.gittrends.ui.home.dialogs.GitProfileBottomSheet
-import dev.ch8n.gittrends.utils.Result
-import dev.ch8n.gittrends.utils.launchActivity
-import dev.ch8n.gittrends.utils.logError
-import dev.ch8n.gittrends.utils.toToast
+import dev.ch8n.gittrends.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -45,11 +42,28 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
             }
         })
 
+        ConnectionInterceptor.networkStatus.observe(this, Observer {
+            isConnected->
+            if (isConnected){
+                networkConnected()
+            }else{
+                networkDisconnected()
+            }
+        })
+
         getTrendRepoEvent()
 
         swipe_refresh.setOnRefreshListener {
             getTrendRepoEvent()
         }
+    }
+
+    private fun networkDisconnected() {
+        "disconnected".toToast(this)
+    }
+
+    private fun networkConnected() {
+        "connected".toToast(this)
     }
 
     private fun getTrendRepoEvent() {

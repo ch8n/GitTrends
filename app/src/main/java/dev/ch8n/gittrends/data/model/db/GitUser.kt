@@ -12,5 +12,4 @@ data class GitUser(
     var avatar: String,
     var gitProfileName: String,
     var gitProfileUrl: String
-
 )

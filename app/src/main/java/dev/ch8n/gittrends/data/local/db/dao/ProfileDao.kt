@@ -23,19 +23,16 @@ interface ProfileDao {
     @Query("SELECT * FROM GitUser WHERE username=:userName")
     suspend fun getProfile(userName: String): GitUser
 
-    @Query("SELECT * FROM GitUser WHERE gitProfileName =:gitProfileName")
-    suspend fun getGitProfile(gitProfileName: String): GitUser
-
 
     //######## Delete ##########
 
-    @Delete
+    @Query("DELETE FROM GitUser")
     suspend fun clearProfiles()
 
-    @Query("SELECT * FROM GitUser WHERE username=:userName")
+    @Query("DELETE FROM GitUser WHERE username=:userName")
     suspend fun deleteProfile(userName: String)
 
-    @Query("SELECT * FROM GitUser WHERE gitProfileName=:gitProfileName")
+    @Query("DELETE FROM GitUser WHERE gitProfileName=:gitProfileName")
     suspend fun deleteGitProfile(gitProfileName: String)
 
 

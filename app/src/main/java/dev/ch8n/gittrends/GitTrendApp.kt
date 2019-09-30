@@ -1,6 +1,5 @@
 package dev.ch8n.gittrends
 
-import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dev.ch8n.gittrends.di.DaggerAppComponent
@@ -9,6 +8,7 @@ import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
 
 open class GitTrendApp : DaggerApplication() {
+
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> = DaggerAppComponent
         .builder()
@@ -32,5 +32,6 @@ open class GitTrendApp : DaggerApplication() {
             )
             .build()
     )
+
 
 }

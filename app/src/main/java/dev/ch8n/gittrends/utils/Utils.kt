@@ -4,10 +4,21 @@ import dev.ch8n.gittrends.data.others.sources.entities.CachedTrendingItem
 import dev.ch8n.gittrends.data.model.local.list.TrendingItem
 import dev.ch8n.gittrends.data.model.remote.GitRepo
 import dev.ch8n.gittrends.data.model.remote.TrendingResponse
+import android.net.NetworkInfo
+import android.content.Context.CONNECTIVITY_SERVICE
+import androidx.core.content.ContextCompat.getSystemService
+import android.net.ConnectivityManager
+
 
 object Utils {
 
-    val trendingItem = TrendingResponse("testAvatar","test", GitRepo("testDesc","testName","TestUrl"),"TestURL2","testUserName")
+    val trendingItem = TrendingResponse(
+        "testAvatar",
+        "test",
+        GitRepo("testDesc", "testName", "TestUrl"),
+        "TestURL2",
+        "testUserName"
+    )
 
     fun getSampleTrendingData() = listOf(
         TrendingItem(
@@ -79,6 +90,5 @@ object Utils {
 
         return mutableList
     }
-
 
 }

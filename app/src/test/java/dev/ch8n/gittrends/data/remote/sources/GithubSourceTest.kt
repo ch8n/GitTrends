@@ -11,6 +11,7 @@ import dev.ch8n.gittrends.di.modules.NetworkBinder
 import dev.ch8n.gittrends.utils.Result
 import dev.ch8n.gittrends.utils.Utils
 import io.mockk.coEvery
+import io.mockk.mockk
 import io.mockk.spyk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -53,7 +54,7 @@ class GithubSourceTest {
     fun setup() {
 
         val networkBinder = NetworkBinder()
-        val okClient = networkBinder.provideOkHttpClient()
+        val okClient = networkBinder.provideOkHttpClient(mockk(relaxed = true))
         val retrofit = networkBinder.provideRetrofitClient(okClient)
         val apiManager = networkBinder.provideApiManager(retrofit)
         server = MockWebServer()
@@ -71,7 +72,7 @@ class GithubSourceTest {
     @Test
     fun `mock real api is responding`() = runBlocking {
         val networkBinder = NetworkBinder()
-        val okClient = networkBinder.provideOkHttpClient()
+        val okClient = networkBinder.provideOkHttpClient(mockk(relaxed = true))
         val retrofit = networkBinder.provideRetrofitClient(okClient)
         val spyApiManager = spyk(networkBinder.provideApiManager(retrofit))
         source = GithubSource(spyApiManager)
@@ -100,7 +101,7 @@ class GithubSourceTest {
         val url = server?.url(baseUrl)
 
         val networkBinder = NetworkBinder()
-        val okClient = networkBinder.provideOkHttpClient()
+        val okClient = networkBinder.provideOkHttpClient(mockk(relaxed = true))
         val retrofit = Retrofit.Builder()
             .baseUrl(url.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -126,7 +127,7 @@ class GithubSourceTest {
         val url = server?.url(baseUrl)
 
         val networkBinder = NetworkBinder()
-        val okClient = networkBinder.provideOkHttpClient()
+        val okClient = networkBinder.provideOkHttpClient(mockk(relaxed = true))
         val retrofit = Retrofit.Builder()
             .baseUrl(url.toString())
             .addConverterFactory(GsonConverterFactory.create())

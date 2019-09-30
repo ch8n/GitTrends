@@ -14,7 +14,7 @@ class PreviewActivity : BaseActivity() {
         get() = R.layout.activity_preview
 
     override fun setup() {
-        val previewUrl = intent.extras.getString(PREVIEW_URL)
+        val previewUrl = intent.extras?.getString(PREVIEW_URL)
         if (previewUrl == null) {
             "Something went wrong".toToast(this)
             "Intent null for imageUrl".logError()
