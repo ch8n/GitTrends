@@ -7,10 +7,10 @@ import dev.ch8n.gittrends.data.local.prefs.dao.UserPrefs
 class AppPrefs(private val appContext: Context) : PreferenceProvider {
 
     override val settings: PreferenceProvider.Settings
-        get() = SettingPrefs(context = appContext)
+            by lazy { SettingPrefs(context = appContext) }
 
     override val user: PreferenceProvider.User
-        get() = UserPrefs(context = appContext)
+            by lazy { UserPrefs(context = appContext) }
 
 
 }

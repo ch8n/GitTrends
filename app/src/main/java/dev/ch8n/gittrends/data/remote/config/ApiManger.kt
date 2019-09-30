@@ -11,8 +11,8 @@ class ApiManager @Inject constructor(private val retrofit: Retrofit) {
         return retrofit.create(clazz)
     }
 
-    var githubService: GithubService = createApi(GithubService::class.java)
-        private set
+    val githubService: GithubService by lazy { createApi(GithubService::class.java) }
+
 }
 
 
