@@ -24,6 +24,9 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
     @Inject
     lateinit var viewModel: MainViewModel
 
+    @Inject
+    lateinit var connectionProvider: ConnectionProvider
+
     lateinit var trendingListAdapter: TrendingListAdapter
     private var bottomSheet: GitProfileBottomSheet? = null
 
@@ -42,7 +45,7 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
             }
         })
 
-        ConnectionInterceptor.networkStatus.observe(this, Observer {
+        connectionProvider.networkStatus.observe(this, Observer {
             isConnected->
             if (isConnected){
                 networkConnected()

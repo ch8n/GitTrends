@@ -8,7 +8,8 @@ import dev.ch8n.gittrends.GitTrendApp
 import dev.ch8n.gittrends.data.remote.config.ApiManager
 import dev.ch8n.gittrends.data.remote.config.BaseUrl
 import dev.ch8n.gittrends.data.remote.config.NETWORK_TIMEOUT
-import dev.ch8n.gittrends.utils.ConnectionInterceptor
+import dev.ch8n.gittrends.utils.ConnectionManger
+import dev.ch8n.gittrends.utils.ConnectionProvider
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,20 +19,23 @@ import javax.inject.Singleton
 @Module
 class NetworkBinder {
 
-    @Provides
-    fun provideOkHttpClient(app: GitTrendApp): OkHttpClient {
 
-        val connectionManager = requireNotNull(
+    @Provides
+    @Singleton
+    fun provideConnectionManager(app:GitTrendApp):ConnectionProvider {
+        val connectivityManager = requireNotNull(
             app.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
         )
-
-        return OkHttpClient.Builder()
-            .addInterceptor(ConnectionInterceptor(connectionManager))
-            .connectTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
-            .readTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
-            .writeTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
-            .build()
+        return ConnectionManger(connectivityManager)
     }
+
+    @Provides
+    fun provideOkHttpClient(connectionProvider: ConnectionProvider): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(connectionProvider.getConnectionInterceptor())
+        .connectTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
+        .readTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
+        .writeTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
+        .build()
 
     @Singleton
     @Provides
