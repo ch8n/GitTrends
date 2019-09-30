@@ -22,7 +22,7 @@ fun String.toToast(context: Context) = Toast
     .makeText(context, this, Toast.LENGTH_SHORT)
     .show()
 
-fun String.logError() = Log.e("GitTrendsApp", this)
+fun String.logError(tag: String = "GitTrendsApp") = Log.e(tag, this)
 
 fun View.setVisibility(isVisibe: Boolean) = if (isVisibe) {
     this.setVisibility(View.VISIBLE)

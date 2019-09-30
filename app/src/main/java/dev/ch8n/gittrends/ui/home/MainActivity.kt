@@ -45,7 +45,7 @@ class MainActivity : BaseActivity(), GitProfileBottomSheet.GitBottomSheetListene
             }
         })
 
-        connectionProvider.networkStatus.observe(this, Observer {
+        connectionProvider.networkStatus.observe(this, Observer  {
             isConnected->
             if (isConnected){
                 networkConnected()

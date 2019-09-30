@@ -26,12 +26,14 @@ class NetworkBinder {
         val connectivityManager = requireNotNull(
             app.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
         )
-        return ConnectionManger(connectivityManager)
+        val cacheDir = app.cacheDir.path
+        return ConnectionManger(connectivityManager,cacheDir)
     }
 
     @Provides
     fun provideOkHttpClient(connectionProvider: ConnectionProvider): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(connectionProvider.getConnectionInterceptor())
+        .cache(connectionProvider.getDiskCache())
         .connectTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
         .readTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
